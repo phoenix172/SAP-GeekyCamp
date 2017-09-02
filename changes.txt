@@ -1,6 +1,0 @@
-<<<<<<< HEAD
-asdsds
-asdasdasd
-=======
-asdasdasdasd
->>>>>>> b793757f2dd19961202a2b7925d8126906c7c8bd
