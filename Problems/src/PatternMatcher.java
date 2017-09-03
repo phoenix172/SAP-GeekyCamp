@@ -27,7 +27,14 @@ public class PatternMatcher {
 
 	private static Boolean isMatch(String text, String pattern) {
 		String[] tokens = pattern.split("\\*");
-		return isMatch(text, tokens, 0);
+		try
+		{
+			return isMatch(text, tokens, 0);
+		}
+		catch(Exception ex)
+		{
+			return false;
+		}
 	}
 
 	private static Boolean isMatch(String text, String[] tokens, int firstToken) {
