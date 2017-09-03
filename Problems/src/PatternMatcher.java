@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,7 +27,9 @@ public class PatternMatcher {
 	}
 
 	private static Boolean isMatch(String text, String pattern) {
-		String[] tokens = pattern.split("\\*");
+		String[] tokens = removeEmpty(pattern.split("\\*"));
+		
+		
 		try
 		{
 			return isMatch(text, tokens, 0);
@@ -37,6 +40,13 @@ public class PatternMatcher {
 		}
 	}
 
+	private static String[] removeEmpty(String[] vals)
+	{
+		List<String> list = new ArrayList<String>(Arrays.asList(vals));
+		list.removeAll(Arrays.asList("", null));
+		return list.toArray(new String[0]);
+	}
+	
 	private static Boolean isMatch(String text, String[] tokens, int firstToken) {
 		if(firstToken == tokens.length)
 		{
@@ -44,15 +54,15 @@ public class PatternMatcher {
 		}
 		
 		String currentToken = tokens[firstToken];
-//		System.out.println("trying to match " + text + " with {" + arrayToString(tokens, firstToken)
-	//			+ "} current token: " + currentToken);
+		/*System.out.println("trying to match " + text + " with {" + arrayToString(tokens, firstToken)
+			+ "} current token: " + currentToken);*/
 		
 		Integer[] indexes = indexesOfToken(text, currentToken);
 
 		for (Integer index : indexes) {
 			String substring = text.substring(index + currentToken.length());
 			if (isMatch(substring, tokens, firstToken + 1)) {
-			//	System.out.println("result true");
+				//System.out.println("result true");
 				return true;
 			}
 
