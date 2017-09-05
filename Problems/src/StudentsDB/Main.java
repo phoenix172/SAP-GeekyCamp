@@ -1,25 +1,25 @@
 package StudentsDB;
 
+import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-
-import javax.activity.InvalidActivityException;
-
-import StudentsDB.CommandHandlers.*;
-import StudentsDB.Entities.*;
-import StudentsDB.Repository.*;
 
 public class Main {
-	public static void main(String[] arguments) throws SQLException
+	public static void main(String[] arguments) throws SQLException, IOException
 	{
-		DBSettings dbSettings = new DBSettings();
-		dbSettings.userName="postgres";
-		dbSettings.password ="postgres";
-		dbSettings.defaultDatabaseName = "postgres";
-		
-		StudentsCmd studentsCmd = new StudentsCmd(dbSettings);
-		studentsCmd.Run();
+		try
+		{
+			DBSettings dbSettings = Configuration.LoadDBSettings("dbSettings.json");
+				
+			StudentsCmd studentsCmd = new StudentsCmd(dbSettings);
+			studentsCmd.Run();
+		}
+		catch(SQLException ex)
+		{
+			System.out.println("Error connecting to database. Please check configuration.");
+		}
+		catch(IOException ex)
+		{
+			System.out.println("Error reading settings.");
+		}
 	}
 }

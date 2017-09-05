@@ -1,0 +1,6 @@
+{
+  "defaultDatabaseName": "postgres",
+  "studentsDatabaseName": "students",
+  "userName": "postgres",
+  "password": "postgres"
+}

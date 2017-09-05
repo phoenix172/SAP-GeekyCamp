@@ -27,6 +27,8 @@ public class StudentsCmd {
 	
 	public void Run()
 	{
+		System.out.println("StudentCMD 1.0");
+		System.out.println("Type help to get started...");
 		while(true)
 		{
 			readCommand();

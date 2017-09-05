@@ -42,8 +42,8 @@ public class CommandHandler {
 		catch (Exception ex)
 		{
 			System.out.println("Error: invalid command");
-			System.out.print("Additional info:");
-			ex.printStackTrace(System.out);
+			//System.out.print("Additional info:");
+			//ex.printStackTrace(System.out);
 			helpAction();
 		}
 	}
