@@ -20,20 +20,15 @@ public class ConsoleEngine {
 		generatorFactory = new SecretGeneratorFactory();
 	}
 	
-	public void Run()
+	public void run()
 	{
 		initializeGame();		
 		do
 		{
-			game.newGame();
-			doDebug();			
+			game.newGame();			
 			playGame();
 		}
 		while(shouldStartNewGame());
-	}
-
-	private void doDebug() {
-		System.out.println(game.getSecret());
 	}
 
 	private void initializeGame() {
@@ -92,7 +87,7 @@ public class ConsoleEngine {
 		System.out.printf("Изберете генератор(%s). Възможни опции: \n", defaultGenerator);		
 		printGenerators();
 		String generatorName = getValueOrDefault(scanner.nextLine(), defaultGenerator);
-		ISecretGenerator result = generatorFactory.Get(generatorName);
+		ISecretGenerator result = generatorFactory.get(generatorName);
 		if(result == null)
 		{
 			System.out.println("Невалиден избор");
@@ -102,7 +97,7 @@ public class ConsoleEngine {
 	}
 
 	private void printGenerators() {
-		String[] generatorNames =  generatorFactory.GetAllNames();
+		String[] generatorNames =  generatorFactory.getAllNames();
 		for(String name : generatorNames)
 		{
 			System.out.printf("\t%s\n", name);

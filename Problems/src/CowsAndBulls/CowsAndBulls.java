@@ -8,7 +8,7 @@ public class CowsAndBulls {
 	{
 		Scanner scanner = new Scanner(System.in);
 		ConsoleEngine engine = new ConsoleEngine(scanner);
-		engine.Run();
+		engine.run();
 		scanner.close();
 	}
 }

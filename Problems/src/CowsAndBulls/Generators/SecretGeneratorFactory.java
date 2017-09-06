@@ -13,7 +13,7 @@ public class SecretGeneratorFactory {
 		 generators.put("smart-number", new DumbNumberGenerator());
 	}
 	
-	public ISecretGenerator Get(String name)
+	public ISecretGenerator get(String name)
 	{
 		String lowerName = name.toLowerCase();
 		if(generators.containsKey(lowerName))
@@ -22,7 +22,7 @@ public class SecretGeneratorFactory {
 			return null;
 	}
 	
-	public String[] GetAllNames()
+	public String[] getAllNames()
 	{
 		return generators.keySet().toArray(new String[0]);
 	}

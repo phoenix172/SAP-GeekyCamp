@@ -8,7 +8,7 @@ public class DumbNumberGenerator implements ISecretGenerator{
 		String number = "";
 		for(int i=0;i<=9 && number.length()<secretLength;i++)
 		{
-			Character digitChar = (char)(i+48);
+			Character digitChar = (char)(i+'0');
 			if(!containsDigit(number, digitChar) && decideRandom())
 			{
 				number += digitChar;
@@ -19,17 +19,14 @@ public class DumbNumberGenerator implements ISecretGenerator{
 		return number;
 	}
 	
-	private Boolean containsDigit(String number, char digit)
+	private boolean containsDigit(String number, char digit)
 	{
 		return number.indexOf(digit) != -1; 
 	}
 	
-	private Boolean decideRandom()
+	private boolean decideRandom()
 	{
 		double decisionRandom = Math.random();
-		if(decisionRandom >= 0 && decisionRandom<0.5)
-			return true;
-		else
-			return false;
+		return decisionRandom >= 0 && decisionRandom<0.5;
 	}	
 }
