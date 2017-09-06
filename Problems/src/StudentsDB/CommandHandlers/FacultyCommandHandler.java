@@ -32,8 +32,8 @@ public class FacultyCommandHandler extends EntityCommandHandler<Faculty> {
 		String help = 
 				"faculty add\r\n" + 
 				"faculty update -i id\r\n" + 
-				"student delete -i id\r\n" + 
-				"course get\r\n" + 
+				"faculty delete -i id\r\n" + 
+				"faculty get\r\n" + 
 				"faculty get -i id";
 		System.out.println("Available actions: ");
 		System.out.println(help);
