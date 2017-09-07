@@ -24,7 +24,7 @@ public class StudentsDatabase {
 	
 	private void connect(String databaseName) throws SQLException
 	{
-		String url = "jdbc:postgresql://localhost/"+databaseName;
+		String url = String.format("jdbc:postgresql://%s/%s",dbSettings.serverUrl,databaseName);
 		connection = DriverManager.getConnection(url, this.dbSettings.userName, this.dbSettings.password);
 	}
 	

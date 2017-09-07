@@ -2,5 +2,6 @@
   "defaultDatabaseName": "postgres",
   "studentsDatabaseName": "students",
   "userName": "postgres",
-  "password": "postgres"
+  "password": "postgres",
+  "serverUrl": "localhost"
 }
