@@ -1,0 +1,32 @@
+#!/bin/bash
+
+grepLine()
+{
+    echo "$1" | grep -Po -m 1 $2 | head -1
+}
+
+printBlameLine()
+{
+    local authorEmail=$(grepLine "$1" '([\w]+@[\w]+.[\w]+)')
+    local fileName=$(grepLine "$1" '(([\w]+[\/]?)+\.[\w]+)')
+    local lineNumber=$(grepLine "$1" '(?<=[\s])([0-9]+)(?=[\)])')
+    local lineContent=$(grepLine "$1" '(?<=([0-9][\)]))(.*)')
+    local trimmedLineContent="$(echo -e "${lineContent}" | sed -e 's/^[[:space:]]*//')"
+    local result=$"$authorEmail:$fileName:$lineNumber:$trimmedLineContent"
+    echo $result
+}
+
+blameFile()
+{
+    local fileName=$1 
+    local searchText=$2
+    (git blame -fe $fileName | grep -e "$searchText") | while read blameLine; do
+        printBlameLine "$blameLine";
+    done
+}
+
+name=$(baseName "$0")
+files=$(grep -rnwHalI --exclude-dir '.git' --exclude "$name" './' -e "$1" )
+for file in $files; do
+    blameFile $file $1
+done
